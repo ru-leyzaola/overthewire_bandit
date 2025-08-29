@@ -16,7 +16,7 @@ The password you are looking for is: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 ```
 
 
-**Level 1 >> Level 2**
+## Level 1 >> Level 2
 ```
 bandit1@bandit:~$ cat ./-
 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
@@ -26,7 +26,7 @@ bandit1@bandit:~$
 Using - as an argument refers to STDIN/STDOUT i.e dev/stdin or dev/stdout .So if you want to open this type of file you have to specify the full location of the file such as `./-` .For eg. , if you want to see what is in that file use `cat ./-`.
 
 
-**Level 2 >> Level 3**
+## Level 2 >> Level 3
 
 ```
 bandit2@bandit:~$ ls
@@ -38,7 +38,7 @@ MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 Using the same method as the last level to display `--spaces in this filename--` into the terminal.
 
 
-**Level 3 >> Level 4**
+##Level 3 >> Level 4
 
 ```
 bandit3@bandit:~/inhere$ ls -a
@@ -50,7 +50,7 @@ bandit3@bandit:~/inhere$ cat ...Hiding-From-You
 Used `ls -a` to show all files, including hidden ones, and then using `cat` to show the password to the next level.3
 
 
-**Level 4 >> Level 5**
+## Level 4 >> Level 5
 
 ```
 bandit4@bandit:~/inhere$ ls
@@ -75,7 +75,7 @@ bandit4@bandit:~/inhere$ cat ./-file07
 
 Using `ls` I listed all the files to get their names. After that I used `file` to check wich type of file each one is. At the end I simply used `cat` to show the password for the next level.
 
-**Level 5 >> Level 6**
+## Level 5 >> Level 6
 
 ```
 bandit5@bandit:~$ ls
@@ -96,7 +96,36 @@ HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
 After changing directory to `inhere`, I used `ls` to see how many directories and files were. Then I used `find` to find the file based on the properties it had, like 1033 bytes. I used `.` refering to the `inhere` directory, `-size` to refer the size of the file and with `1033c` `1033` is the number and `c` at the end is the type of unit (in this case bytes).
 
-**Level 6 >> Level 7**
+## Level 6 >> Level 7 
+
+```
+bandit6@bandit:~$ find / -group bandit6 -size 33c -user bandit7 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password
+morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+bandit6@bandit:~$
+```
+Here I used `find` to search the file with the given properties of the file with the password. At the end I used `2>/dev/null` so the screen wouldn't get flooded with permision errors. 
+1. `2>` means redirect file descriptor 2 (stderr).
+2. `/dev/null` is a “black hole” file that discards whatever you send to it.
+3. Together: `2>/dev/null` means send all error messages to /dev/null, i.e. hide them.
+
+## Level 7 >> Level 8
+
+```
+bandit7@bandit:~$ cat data.txt | grep -i 'millionth'
+millionth	dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+```
+
+I first used `cat` to display the data in the file, following with a pipeline so that the output of `cat` becomes the input of `grep`, where I used `-i` to ignore caps if there were any.
+
+
+## Level 8 >> Level 9
+
+```
+bandit8@bandit:~$ sort data.txt | uniq -u
+4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+```
 
 
 
