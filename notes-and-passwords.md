@@ -127,5 +127,37 @@ bandit8@bandit:~$ sort data.txt | uniq -u
 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 ```
 
+First I used `sort` to make the xontent of the file readble, then with a pipeline a used `uniq -u` so that the only displayed line is the one that doesn't repeat in the whole file.
+
+
+## Level 9 >> Level 10
+
+```
+bandit9@bandit:~$ sort data.txt | grep -a "===="
+f=+n
+�U�ʷ>����m�Y弆��ܫr�ti1O�Ȋk���\���M��s�y+�:�d4��{�s%�q;  �{���;��k��hX���Y���%��]�\�s��ŏN�q��ZD�`���""��j,A/�
+                                                                                                            ����T�}�~)��c��P��3�P-�6��<"�QL�u��YCTc��в`*B�k0a��9$�v箰_��"�ș�0���FH���SɕˇG����m���Գ
+                                                                     F<�T�g7��3����5����h�P��R[!�I�g9�H{y{K_
+                                                                                                           �N�%�K�B�ܡ (R[b���SR��ۼ�t�
+e���========== password�#`�XNbϑ�g�
+^�������Ĥ��u�f���0�S���E��8��|�z�W���M��2��sw�g��1�����:[��T1_�DU�Hy5� 12wȨ*U[p<z�
+                                               p"%�s��]�<�`t�z�sB��^@��v(8;����u[BMgUވ$�Ln`�#��ɔ�3b�;^6P����I"^!�֦��ڴ��݁��Knb�A���߱�.��2U��i��l���p�H
+                            1��ʗӃ���@�ϑA�]'kpM����h�I�Tl��Dc���Ȅ���r����t�<&��f�k�?��^�^"F�B��!QeZ��մ;����(C�ֲ�A�MQ�*|T�C�M1P�ҟuU{�z�5&~`Op5u{,���v^y���(�g�
+s���f�>�9����!?O� �k��|ʖ��*юͮ���,M��c���
+                                       �#6�G���wBܚw��Ōz�i�$x�~h�:���h� D���O
+                                                                            �n�bd/�x�;���M��	�9�ά��H�b�~�n��q������~J0�"?�S�!أ��zu`0|�~ԟ�n�O7�&��Y"���}+C5�<�3�=�a�LJY��]�7ް�zE�$H�t�.��$ިtb^_5� ef========== the��ف�w�	��tP�!�хoQ_og�~���q^M��5!{��} Q�|�[s}g'���aXJf`�jdN�(\)��}��'���Kľ����R�[�����d����S�<��R
+d�3��{��X��h,¹Y"�Ci+�2i���t����¿_���&g��z�|Ã5�ΫR+�$�)x���r�<�,C���|ƧZ�fM�v?,�9��gh��;Յ���5n%Vˎ���bGU�SC�h�d����CP�
+����@E`Ɵ"�W-h                                               ��.Gl$�I�
+?{�Z�`�փ���k!x��-:݉�L��gS!�5z7O����˵�W�C�H�$Z\�&c���Ĉ�T
+                                                       Ƿ��d�P�x���Yρ�������:�-���@ʞ҉
+                                                                                   �>/Meu��OG���!=v5~6�Gt��k�w~�/&�<�r�ڝQ��[Rx������1��0}1��E��K�G�FA���-62�4�UQ���B̫}0˝�m���8�h��	W�L�e�P�\1�~Ć�۠��*�>�j�bB��J�Zf�B�.�э��Ϧ�3�l�[F�F�s.'ԣw�+�3�ِk��6�|���̕�)�V�usE�&����e�C�UY�P�7.p~�'X�
+LU�D)��$��,�Z�M J.)�D<խ醸BW���'t;�S5vZ��Ƴ#����(u��]9�S-�\dJL o�(��Щ:�y�X�����a\�$��Y�&����W�ݑs�̥�����>8�b��Ҫ�p�R��5�{��]9��p��%�5�b��l�o���u�����_�eHY2*�4Lܤ���`L?�́�>u`9J========== FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+```
+
+I used `sort`, but later found out it wasn't necessary, but used `grep -a` with that option so it wiill treat the input as text.
+
+
+## Level 10 >> Level 11
+
 
 
