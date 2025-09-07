@@ -159,5 +159,90 @@ I used `sort`, but later found out it wasn't necessary, but used `grep -a` with 
 
 ## Level 10 >> Level 11
 
+`ssh bandit10@bandit.labs.overthewire.org -p 2220`
+
+```
+bandit10@bandit:~$ base64 -d data.txt | cat
+The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+bandit10@bandit:~$
+```
+
+I used `base64 -d` to decode the text in `data.txt` to a readable form. Later found out `cat` wasn't necessary.
+
+
+## Level 11 >> Level 12
+
+`ssh bandit11@bandit.labs.overthewire.org -p 2220`
+
+```
+bandit11@bandit:~$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+```
+
+I used `cat data.txt` as an input, so that `tr` could read the contents of the file and decode it. I could've also simply used 
+`bandit11@bandit:~$ tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt`, this way I'm feeding the contents of `data.txt` into `tr` without using cat.
+
+
+## Level 12 >> Level 13
+
+```
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ xxd -r my-data.txt compressed-data
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file compressed-data
+compressed-data: gzip compressed data, was "data2.bin", last modified: Fri Aug 15 13:15:53 2025, max compression, from Unix, original size modulo 2^32 584
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ gzip -fd compressed-data
+gzip: compressed-data: unknown suffix -- ignored
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ mv compressed-data compressed-data.gz
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ gzip -d compressed-data
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file compressed-data
+compressed-data: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ mv compressed-data compressed-data.bz2
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ bzip2 -d compressed-data.bz2
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file compressed-data
+compressed-data: gzip compressed data, was "data4.bin", last modified: Fri Aug 15 13:15:53 2025, max compression, from Unix, original size modulo 2^32 20480
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ mv compressed-data compressed-data.gz
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ gzip -d compressed-data.gz
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file compressed-data
+compressed-data: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ tar -xf compressed-data
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  data5.bin  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ fil
+filan             filefrag          filelife-bpfcc    filetop-bpfcc
+file              filegone-bpfcc    fileslower-bpfcc
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file data5.bin
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ tar -xf data5.bin
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  data5.bin  data6.bin  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ mv data6.bin data6.bin.bz2
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ bzip2 -d data6.bin.bz2
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  data5.bin  data6.bin  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file data6.bin
+data6.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ tar -xf data6.bin
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  data5.bin  data6.bin  data8.bin  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file data8.bin
+data8.bin: gzip compressed data, was "data9.bin", last modified: Fri Aug 15 13:15:53 2025, max compression, from Unix, original size modulo 2^32 49
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ mv data8.bin data8.bin.gz
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ gzip -d data8.bin.gz
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ ls
+compressed-data  data5.bin  data6.bin  data8.bin  my-data.txt
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ file data8.bin
+data8.bin: ASCII text
+bandit12@bandit:/tmp/tmp.DVlfk18SPk$ cat data8.bin
+The password is FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+```
+
+This was a lengthy one. First I made a temporal directory, copied `data.txt` intp that directory and renamed it to `my-data.txt`. After that I used `xxd` on `my-data.txt` to convert the hexdump into binary and writing it in `compressed-data`. After that I checked which type of file was `compressed-data` so I could rename it with the respective suffix to decompress wither with `bzip2`, `gzip` or `tar` (in the case of `tar` i did'nt have to rename it). I couldn't decompress the file without changing the name first, if that was the case I would've use `bzip2 -d -f file-name` or `gzip -d -f file-name`.
 
 
